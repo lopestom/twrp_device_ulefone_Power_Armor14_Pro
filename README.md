@@ -1,0 +1,1 @@
+# -twrp_device_ulefone_Power_Armor14_Pro
