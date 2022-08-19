@@ -1,5 +1,6 @@
 Device Tree for Umidigi Bison Pro - mt6768 - MT6769T
 --------------------------------------------------------
+--------------------------------------------------------
 # TWRP device tree for Oukitel WP5 Pro
 ## MT6762_65 - A10 - updated to A11
 ---------------
