@@ -54,7 +54,7 @@ export ALLOW_MISSING_DEPENDENCIES=true
 export LC_ALL=C
 export USE_NINJA=false
 . build/envsetup.sh
-lunch twrp_WP5_Pro_EEA_R-eng
+lunch twrp_Power_Armor14_Pro-eng
 mka bootimage
 ```
 
