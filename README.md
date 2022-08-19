@@ -37,12 +37,6 @@ Features| Fingerprint (side-mountedn sensor), accelerometer, proximity, compass,
 - [stalkerc from 4pda](https://4pda.to/forum/index.php?showuser=5093778) - For testing & photos of TWRP.<br/>
 - [2mkl from 4pda](https://4pda.to/forum/index.php?showuser=254002) - For testing of TWRP.<br/>
 
-
-
-
-
-![Oukitel WP5 Pro](https://cdn-files.kimovil.com/default/0004/85/thumb_384707_default_big.jpeg)
-
 ## Big thanks to:
 - [2mkl from 4pda](https://4pda.to/forum/index.php?showuser=254002) - For testing of TWRP.<br/>
 - [TeamWin](https://github.com/TeamWin) for TWRP SC.
@@ -53,8 +47,8 @@ Features| Fingerprint (side-mountedn sensor), accelerometer, proximity, compass,
 # TWRP Pictures
 ## ©2022
 -------------
-![Initial Menu](https://github.com/lopestom/twrp_device_umidigi_BISON_Pro/blob/android-11.0/.pictures/TWRP3.6.1_11-UMIDIGI%20BISON%20Pro_RU-20220521_103640.jpg?raw=true)
-![Backup Partitions](https://github.com/lopestom/twrp_device_umidigi_BISON_Pro/blob/android-11.0/.pictures/TWRP3.6.1_11-UMIDIGI%20BISON%20Pro_RU-20220521_104739.jpg?raw=true)
+![Initial Menu](https://gRU-20220521_103640.jpg?raw=true)
+![Backup Partitions](https://github.4739.jpg?raw=true)
 
 ## To build with minimal twrp AOSP
 ```
