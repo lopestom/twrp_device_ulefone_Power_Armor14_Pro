@@ -1,6 +1,14 @@
 Device Tree for Umidigi Bison Pro - mt6768 - MT6769T
 ============================================================
+--------------------------------------------------------
+# TWRP device tree for Oukitel WP5 Pro
+## MT6762_65 - A10 - updated to A11
+---------------
+- Firmware version: OUKITEL_WP5_Pro_EEA_A11_V05_20210915
+Status: testing
 
+recovery-WP5_Pro_EEA_R-A11-nnnnnnn.img => Working?? Not Working???
+------------------------------------
 ## Device specifications
 Basic   | Specification Sheet
 -------:|:-------------------------
@@ -32,25 +40,6 @@ Features| Fingerprint (side-mountedn sensor), accelerometer, proximity, compass,
 
 
 
---------------------------------------------------------
-# TWRP device tree for Oukitel WP5 Pro
-## MT6762_65 - A10 - updated to A11
----------------
-- Firmware version: OUKITEL_WP5_Pro_EEA_A11_V05_20210915
-Status: testing
-
-recovery-WP5_Pro_EEA_R-A11-nnnnnnn.img => Working?? Not Working???
-------------------------------------
-
-
-Specs: https://www.devicespecifications.com/en/model/781d53e7
-Component Type | Details
--------:|:-------------------------
-Shipped PLATFORM OS	 |  Android 10 updated to A11
-Chipset	     |  Mediatek MT6762_65 Helio 25 (12nm)
-CPU	         |  Octa-core (Cortex-A53 4x1.8 GHz + Cortex-A53 4x1.5 GHz)
-GPU	         |  PowerVR GE8320
-RAM / ROM	         |  4GB / 64GB
 
 
 ![Oukitel WP5 Pro](https://cdn-files.kimovil.com/default/0004/85/thumb_384707_default_big.jpeg)
