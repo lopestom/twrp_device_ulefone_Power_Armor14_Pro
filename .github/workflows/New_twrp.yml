@@ -67,7 +67,7 @@ jobs:
               PATH=~/bin:$PATH
               cd twrp
               export ALLOW_MISSING_DEPENDENCIES=true && source build/envsetup.sh &&lunch twrp_Power_Armor14_Pro-eng && mka $TARGET -j$(nproc --all)
-              cp  out/target/product/Power_Armor14_Pro/boot.img    out/target/product/Power_Armor14_Pro/boot-UPA14_Pro_20220720_V01-A12-$(date +"%Y%m%d-%H%M").img  
+              cp  out/target/product/Power_Armor14_Pro/boot.img    out/target/product/Power_Armor14_Pro/boot-UPA14_Pro-A12-$(date +"%Y%m%d-%H%M").img  
              
        - name: Release recovery image
          uses: softprops/action-gh-release@v1
