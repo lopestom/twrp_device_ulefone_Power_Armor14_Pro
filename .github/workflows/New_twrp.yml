@@ -60,7 +60,7 @@ jobs:
        - name: Checkout device tree
          uses: actions/checkout@v2
          with:
-          path: device/ulefone/Power_Armor14_Pro
+          path: twrp/device/ulefone/Power_Armor14_Pro
              
        - name: Build
          run: |
@@ -78,3 +78,4 @@ jobs:
           name: TWRP36x_12-Alpha
           files: | 
             twrp/out/target/product/Power_Armor14_Pro/boot*.img
+            twrp/out/target/product/Power_Armor14_Pro/ramdisk*.img
