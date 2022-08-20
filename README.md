@@ -12,7 +12,9 @@ GPU     | Mali-G52 MC2
 Memory  | 6GB RAM
 Storage | 128 GB
 MicroSD | Up to 512 GB
-Battery | Li-Po 10000 mAh, non-removable
+        | Li-Po 10000 mAh, non-removable
+Battery | Charging Fast charging 18W
+        | Fast wireless charging 15W
 Display | 720 x 1600 pixels, 6.52"
 Rear Camera  | 20MPx (wide) & 2MPx (macro) & 2MPx (depth)
 Selfie Front Camera | 20MPx LED flash, HDR
