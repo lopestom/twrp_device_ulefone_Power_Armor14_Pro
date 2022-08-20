@@ -28,10 +28,10 @@ Features| Fingerprint (side-mountedn sensor), accelerometer, proximity, compass
 - Firmware version: GQ3097TH1_KSE3H_Ulefone_20220720_V01
 Status: testing
 
-recovery-UPA14_Pro_20220720_V01-A12-nnnnnnn.img => Working?? Not Working???
-## What's the history?
 
-- 21/05/2022 TWRP booted--> boot-BISON_Pro-A11-20220520-1538.img;
+## What's the history?
+boot-UPA14_Pro_20220720_V01-A12-nnnnnnn.img => Working?? Not Working???
+- 21/05/2022 TWRP boot-UPA14_Pro_20220720_V01-A12-nnnnnnn.img --> booted;
 
 ## Credits
 
