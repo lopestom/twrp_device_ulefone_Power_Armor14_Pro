@@ -23,11 +23,10 @@ Features| Fingerprint (side-mountedn sensor), accelerometer, proximity, compass
 ![Ulefone Power Armor 14 Pro](https://fdn2.gsmarena.com/vv/pics/ulefone/ulefone-power-armor-14-pro-1.jpg)
 
 --------------------------------------------------------
-# TWRP device tree
+# TWRP device tree MTK6769_12.0
 ---------------
 - Firmware version: GQ3097TH1_KSE3H_Ulefone_20220720_V01
 Status: testing
-
 
 ## What's the history?
 boot-UPA14_Pro_20220720_V01-A12-nnnnnnn.img => Working?? Not Working???
