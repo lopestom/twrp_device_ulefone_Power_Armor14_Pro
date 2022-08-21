@@ -1,0 +1,80 @@
+name: Building recovery
+on: 
+  workflow_dispatch:
+   inputs:
+     manifest:
+        description: 'https://github.com/minimal-manifest-twrp/platform_manifest_twrp_aosp -b twrp-12.1'
+        required: true
+     device:
+        description: 'Power_Armor14_Pro'
+        required: true
+     dt_link:
+        description: 'https://github.com/lopestom/twrp_device_ulefone_Power_Armor14_Pro'
+        required: true
+     dt_path:
+        description: 'device/ulefone/Power_Armor14_Pro'
+        required: true
+     kernel_link:
+        description: 'kernel repo link'
+        required: false
+     kernel_path:
+        description: 'kernel path i.e kernel/xiaomi/rosy'
+        required: false
+     kernelisprebuilt:
+        description: 'if your kernel is not prebuilt set this to false'
+        required: true
+        default: 'false'
+     cryptfs_fix:
+        description: 'if your device require to fix cryptfs_hw conflict set this to true'
+        required: true
+        default: 'false'
+     target:
+        description: 'target i.e recoveryimage'
+        required: true
+        default: 'bootimage'
+
+env:
+  MANIFEST: ${{ github.event.inputs.manifest }}
+  DEVICE: ${{ github.event.inputs.device }}
+  DT_LINK: ${{ github.event.inputs.dt_link }}
+  DT_PATH: ${{ github.event.inputs.dt_path }}
+  KERNEL_LINK: ${{ github.event.inputs.kernel_link }}
+  KERNEL_PATH: ${{ github.event.inputs.kernel_path }}
+  KERNELISPREBUILT: ${{ github.event.inputs.kernelisprebuilt }}
+  TARGET: ${{ github.event.inputs.target }}
+  CRYPTFS_FIX : ${{ github.event.inputs.cryptfs_fix }}
+  TZ: Asia/Kolkata
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+
+    steps:
+       - name: Checkout
+         uses: actions/checkout@main
+
+       - name: cleanup space
+         uses: rokibhasansagar/slimhub_actions@main
+
+
+       - name: Initializing environment
+         run: |
+            sudo -E apt-get -qq update
+            sudo -E apt-get -qq install bc build-essential zip curl libstdc++6 git wget python gcc clang libssl-dev rsync flex curl  bison aria2
+            sudo curl --create-dirs -L -o /usr/local/bin/repo -O -L https://storage.googleapis.com/git-repo-downloads/repo
+            sudo chmod a+rx /usr/local/bin/repo
+
+       - name: Sync recovery source ,dt & kernel & make recovery
+         run: |
+           sudo chmod 0777 setup.sh
+           bash setup.sh
+
+       - uses: actions/upload-artifact@v2
+         with:
+          name: recoveryzip
+          path: work/out/target/product/*/*.zip
+
+       - uses: actions/upload-artifact@v2
+         with:
+          name: recoveryimage
+          path: work/out/target/product/*/*.img
