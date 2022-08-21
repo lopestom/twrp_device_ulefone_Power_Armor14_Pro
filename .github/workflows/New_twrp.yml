@@ -58,7 +58,7 @@ jobs:
           rm -rf .repo
              
        - name: Checkout device tree
-         uses: actions/checkout@v2
+         uses: actions/checkout@v3
          with:
           path: twrp/device/ulefone/Power_Armor14_Pro
              
