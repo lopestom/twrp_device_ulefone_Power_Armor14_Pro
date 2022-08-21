@@ -1,74 +1,61 @@
 name: Building recovery
-on: 
-  workflow_dispatch:
-   inputs:
-     manifest:
-        description: 'https://github.com/minimal-manifest-twrp/platform_manifest_twrp_aosp -b twrp-12.1'
-        required: true
-     device:
-        description: 'Power_Armor14_Pro'
-        required: true
-     dt_link:
-        description: 'https://github.com/lopestom/twrp_device_ulefone_Power_Armor14_Pro'
-        required: true
-     dt_path:
-        description: 'device/ulefone/Power_Armor14_Pro'
-        required: true
-     kernel_link:
-        description: 'kernel repo link'
-        required: false
-     kernel_path:
-        description: 'kernel path i.e kernel/xiaomi/rosy'
-        required: false
-     kernelisprebuilt:
-        description: 'if your kernel is not prebuilt set this to false'
-        required: true
-        default: 'false'
-     cryptfs_fix:
-        description: 'if your device require to fix cryptfs_hw conflict set this to true'
-        required: true
-        default: 'false'
-     target:
-        description: 'target i.e recoveryimage'
-        required: true
-        default: 'bootimage'
+
+on:
+#  release:
+#    types: [published]
+#  push:
+#    branches:
+#      - master
+#    paths:
+#      - '.config'
+#  schedule:
+#    - cron: 0 8 * * 5
+  watch:
+    types: [started]
 
 env:
-  MANIFEST: ${{ github.event.inputs.manifest }}
-  DEVICE: ${{ github.event.inputs.device }}
-  DT_LINK: ${{ github.event.inputs.dt_link }}
-  DT_PATH: ${{ github.event.inputs.dt_path }}
-  KERNEL_LINK: ${{ github.event.inputs.kernel_link }}
-  KERNEL_PATH: ${{ github.event.inputs.kernel_path }}
-  KERNELISPREBUILT: ${{ github.event.inputs.kernelisprebuilt }}
-  TARGET: ${{ github.event.inputs.target }}
-  CRYPTFS_FIX : ${{ github.event.inputs.cryptfs_fix }}
+  MANIFEST: https://github.com/minimal-manifest-twrp/platform_manifest_twrp_aosp -b twrp-12.1
+  DEVICE: Power_Armor14_Pro
+  DT_LINK: https://github.com/lopestom/twrp_device_ulefone_Power_Armor14_Pro
+  DT_PATH: device/ulefone/Power_Armor14_Pro
+  TARGET: bootimage
   TZ: Asia/Kolkata
 
 jobs:
   build:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-18.04
 
     steps:
        - name: Checkout
-         uses: actions/checkout@main
-
-       - name: cleanup space
-         uses: rokibhasansagar/slimhub_actions@main
-
-
+         uses: actions/checkout@master
+         
        - name: Initializing environment
          run: |
+            sudo rm -rf /usr/share/dotnet /etc/mysql /etc/php /etc/apt/sources.list.d
+            docker rmi `docker images -q`
+            sudo apt-get remove account-plugin-facebook account-plugin-flickr account-plugin-jabber account-plugin-salut account-plugin-twitter account-plugin-windows-live account-plugin-yahoo aisleriot brltty duplicity empathy empathy-common example-content gnome-accessibility-themes gnome-contacts gnome-mahjongg gnome-mines gnome-orca gnome-screensaver gnome-sudoku gnome-video-effects gnomine landscape-common libreoffice-avmedia-backend-gstreamer libreoffice-base-core libreoffice-calc libreoffice-common libreoffice-core libreoffice-draw libreoffice-gnome libreoffice-gtk libreoffice-impress libreoffice-math libreoffice-ogltrans libreoffice-pdfimport libreoffice-style-galaxy libreoffice-style-human libreoffice-writer libsane libsane-common mcp-account-manager-uoa python3-uno rhythmbox rhythmbox-plugins rhythmbox-plugin-zeitgeist sane-utils shotwell shotwell-common telepathy-gabble telepathy-haze telepathy-idle telepathy-indicator telepathy-logger telepathy-mission-control-5 telepathy-salut totem totem-common totem-plugins printer-driver-brlaser printer-driver-foo2zjs printer-driver-foo2zjs-common printer-driver-m2300w printer-driver-ptouch printer-driver-splix
+            git config --global user.name "lopestom"
+            git config --global user.email "guillopes2002@gmail.com"         
+            sudo -E apt-get -y purge azure-cli ghc* zulu* hhvm llvm* firefox google* dotnet* powershell openjdk* mysql* php* 
+            sudo -E apt-get clean 
             sudo -E apt-get -qq update
-            sudo -E apt-get -qq install bc build-essential zip curl libstdc++6 git wget python gcc clang libssl-dev rsync flex curl  bison aria2
+            sudo -E apt-get -qq install bc build-essential zip curl libstdc++6 git wget python gcc clang libssl-dev repo rsync flex curl  bison aria2
             sudo curl --create-dirs -L -o /usr/local/bin/repo -O -L https://storage.googleapis.com/git-repo-downloads/repo
             sudo chmod a+rx /usr/local/bin/repo
-
-       - name: Sync recovery source ,dt & kernel & make recovery
+            
+       - name: Sync recovery source and device tree
          run: |
-           sudo chmod 0777 setup.sh
-           bash setup.sh
-
+             mkdir work
+             cd work
+             repo init -u $MANIFEST --depth=1 --groups=all,-notdefault,-device,-darwin,-x86,-mips
+             repo sync -j4
+             git clone $DT_LINK --depth=1 --single-branch $DT_PATH
+             
+       - name: Build
+         run: |
+              cd work
+              . build/envsetup.sh &&lunch twrp_$DEVICE-eng &&export ALLOW_MISSING_DEPENDENCIES=true && mka $TARGET
+             
        - uses: actions/upload-artifact@v2
          with:
           name: recoveryzip
