@@ -29,6 +29,7 @@ jobs:
     steps:
        - name: Checkout
          uses: actions/checkout@master
+         
    # Cleanup The Actions Workspace Using Custom Composite Run Actions
     - name: Cleanup
       uses: rokibhasansagar/slimhub_actions@main
@@ -53,11 +54,6 @@ jobs:
         chmod a+x ~/bin/repo
         sudo ln -sf ~/bin/repo /usr/bin/repo
 
-       - name: Set Swap Space
-         uses: pierotofy/set-swap-space@master
-         with:
-           swap-size-gb: 12
-
     - name: Initialize repo
       run: |
         mkdir workspace
@@ -72,6 +68,11 @@ jobs:
       run: |
         repo sync -j$(nproc --all) --force-sync
       working-directory: workspace
+
+       - name: Set Swap Space
+         uses: pierotofy/set-swap-space@master
+         with:
+           swap-size-gb: 12
              
     # You might want to Checkout your repo first, but not mandatory
     - name: Check Out device tree
