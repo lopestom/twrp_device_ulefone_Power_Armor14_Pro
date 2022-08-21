@@ -61,7 +61,7 @@ jobs:
        - name: Checkout device tree
          uses: actions/checkout@v2
          with:
-         path: twrp/device/ulefone/Power_Armor14_Pro
+          path: twrp/device/ulefone/Power_Armor14_Pro
              
        - name: Build
          run: |
