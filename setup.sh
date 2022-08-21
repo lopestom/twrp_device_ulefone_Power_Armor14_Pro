@@ -29,6 +29,6 @@ fi
 
 echo "compiling recovery"
 source build/envsetup.sh && \
-lunch omni_$DEVICE-eng && \
+lunch twrp_$DEVICE-eng && \
 export ALLOW_MISSING_DEPENDENCIES=true && \
 mka $TARGET
