@@ -1,26 +1,31 @@
-name: Twrp-12
+name: Recovery TWRP Build
 
 on:
+#  release:
+#    types: [published]
+#  push:
+#    branches:
+#      - master
+#    paths:
+#      - '.config'
+#  schedule:
+#    - cron: 0 8 * * 5
   workflow_dispatch:
     inputs:
-      LIBRARY_NAME:
-        description: 'LIBRARY_NAME'
-        required: true
-        default: 'twrp'
-      LIBRARY_URL:
-        description: 'LIBRARY_URL'
+      MANIFEST_URL:
+        description: 'MANIFEST_URL'
         required: true
         default: 'https://github.com/minimal-manifest-twrp/platform_manifest_twrp_aosp'
-      LIBRARY_BRANCH:
-        description: 'LIBRARY_BRANCH'
+      MANIFEST_BRANCH:
+        description: 'MANIFEST_BRANCH'
         required: true
         default: 'twrp-12.1'
-      DEVICE_URL:
-        description: 'DEVICE_URL'
+      DEVICE_TREE_URL:
+        description: 'DEVICE_TREE_URL'
         required: true
         default: 'https://github.com/lopestom/twrp_device_ulefone_Power_Armor14_Pro'
-      DEVICE_BRANCH:
-        description: 'DEVICE_BRANCH'
+      DEVICE_TREE_BRANCH:
+        description: 'DEVICE_TREE_BRANCH'
         required: true
         default: 'android-12.1'
       DEVICE_PATH:
@@ -31,92 +36,128 @@ on:
         description: 'DEVICE_NAME'
         required: true
         default: 'Power_Armor14_Pro'
+      MAKEFILE_NAME:
+        description: 'MAKEFILE_NAME'
+        required: true
+        default: 'twrp_Power_Armor14_Pro'
       BUILD_TARGET:
         description: 'BUILD_TARGET'
         required: true
-        default: 'bootimage'
-        type: choice
-        options:
-        - recoveryimage
-        - bootimage
-        - vendorbootimage
+        default: 'boot'
 
 jobs:
   build:
     if: github.event.repository.owner.id == github.event.sender.id
     runs-on: ubuntu-18.04
+    # You can use either of the ubuntu-18.04 or ubuntu-20.04 runner
+    steps:
+    - name: Display Run Parameters
+      run: |
+        echo "::group::User Environment Variables"
+        echo "Manifest URL: ${{ github.event.inputs.MANIFEST_URL }}"
+        echo "Manifest Branch: ${{ github.event.inputs.MANIFEST_BRANCH }}"
+        echo "Device Tree URL: ${{ github.event.inputs.DEVICE_TREE_URL }}"
+        echo "Device Tree Branch: ${{ github.event.inputs.DEVICE_TREE_BRANCH }}"
+        echo "Device Name: ${{ github.event.inputs.DEVICE_NAME }}"
+        echo "Build Target: ${{ github.event.inputs.BUILD_TARGET }}.img"
+        echo "::endgroup::"
 
     steps:
-    - name: Remove Useless Package
-      run: |
-        docker rmi `docker images -q`
-        sudo rm -rf /usr/share/dotnet /etc/mysql /etc/php /etc/sudo apt/sources.list.d
-        sudo apt -y purge azure-cli ghc* zulu* hhvm llvm* firefox google* dotnet* powershell openjdk* mysql* php*
-        sudo apt -y autoremove --purge
-        sudo apt -y autoclean
-        sudo apt clean
-    - name: Maximize Build Space
-      uses: easimon/maximize-build-space@master
-      with:
-        root-reserve-mb: 1024
-        swap-size-mb: 10240
-        remove-dotnet: 'true'
-        temp-reserve-mb: 1024
-        remove-android: 'true'
-        remove-haskell: 'true'
+       - name: Checkout
+         uses: actions/checkout@master 
 
+    # You might want to Checkout your repo first, but not mandatory
     - name: Check Out
-      uses: actions/checkout@main
+      uses: actions/checkout@v3
+    # Cleanup The Actions Workspace Using Custom Composite Run Actions
+    - name: Cleanup
+      uses: rokibhasansagar/slimhub_actions@main
+      # That's it! Now use your normal steps
 
-    - name: Set Variables
+    - name: Prepare the environment
+      run: |
+        sudo apt update
+        sudo apt -y upgrade
+        sudo apt -y install gperf gcc-multilib gcc-10-multilib g++-multilib g++-10-multilib libc6-dev lib32ncurses5-dev x11proto-core-dev libx11-dev tree lib32z-dev libgl1-mesa-dev libxml2-utils xsltproc bc ccache lib32readline-dev lib32z1-dev liblz4-tool libncurses5-dev libsdl1.2-dev libwxgtk3.0-dev libxml2 lzop pngcrush schedtool squashfs-tools imagemagick libbz2-dev lzma ncftp python qemu-user-static libstdc++-10-dev
+        sudo apt-get update
+        sudo apt-get -y install --reinstall build-essential
+
+    - name: Install OpenJDK 8
+      uses: actions/setup-java@v3
+      with:
+        distribution: 'zulu'
+        java-version: '8'
+
+    - name: Verify Java Install
+      run: java -version
+
+    - name: Set variables
       run: |
         echo "::set-output name=date::$(date +%F)"
       id: var
-
-    - name: Prepare Environment
+      
+    - name: Install repo
       run: |
-        export HOME=${GITHUB_WORKSPACE}
-        cd ${GITHUB_WORKSPACE}
-        sudo apt -y install git aria2 
-        git clone https://gitlab.com/OrangeFox/misc/scripts
-        cd scripts
-        sudo bash setup/android_build_env.sh
-        sudo bash setup/install_android_sdk.sh || true
-    - name: Init Repo
+        mkdir ~/bin
+        curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
+        chmod a+x ~/bin/repo
+        export PATH=~/bin:$PATH
+      
+    - name: Initialize repo
       run: |
-        mkdir ${GITHUB_WORKSPACE}/workspace
-        cd ${GITHUB_WORKSPACE}/workspace
-        git config --global user.name "lopestom"
-        git config --global user.email "guillopes2002@gmail.com"
-        repo init --depth=1 -u ${{ github.event.inputs.LIBRARY_URL }} -b ${{ github.event.inputs.LIBRARY_BRANCH }}
+        PATH=~/bin:$PATH
+        mkdir workspace
+        cd workspace
+        echo "::set-output name=pwd::$(pwd)"
+        git config --global user.name "Captain Throwback"
+        git config --global user.email "captainthrowback@hotmail.com"
+        repo init --depth=1 -u ${{ github.event.inputs.MANIFEST_URL }} -b ${{ github.event.inputs.MANIFEST_BRANCH }}
+      id: pwd
+          
     - name: Repo Sync
       run: |
-        cd ${GITHUB_WORKSPACE}/workspace
-        repo sync -j$(nproc --all)
+        PATH=~/bin:$PATH
+        cd workspace
+        repo sync -j$(nproc --all) -f --force-sync
         ls -al
-    - name: Repopick Fscrypt
-      if: ${{ github.event.inputs.LIBRARY_URL == 'https://github.com/minimal-manifest-twrp/platform_manifest_twrp_aosp.git' && github.event.inputs.LIBRARY_BRANCH == 'twrp-12.1' }}
-      run: |
-        cd ${GITHUB_WORKSPACE}/workspace
-        source build/envsetup.sh
-        repopick 5405
-        repopick 5540
-    - name: Clone Device Tree
-      run: |
-        cd ${GITHUB_WORKSPACE}/workspace
-        git clone ${{ github.event.inputs.DEVICE_URL }} -b ${{ github.event.inputs.DEVICE_BRANCH }} ./${{ github.event.inputs.DEVICE_PATH }}
-    - name: Building
-      run: |
-        cd ${GITHUB_WORKSPACE}/workspace
-        export ALLOW_MISSING_DEPENDENCIES=true
-        source build/envsetup.sh
-        lunch ${{ github.event.inputs.LIBRARY_NAME }}_${{ github.event.inputs.DEVICE_NAME }}-eng
-        make clean
-        make ${{ github.event.inputs.BUILD_TARGET }} -j$(nproc --all)
-    - name: Upload Articact
-      uses: actions/upload-artifact@v2
+      
+    - name: Checkout device tree
+      uses: actions/checkout@v2
       with:
-        path: |
-          workspace/out/target/product/${{ github.event.inputs.DEVICE_NAME }}/*.img
-          workspace/out/target/product/${{ github.event.inputs.DEVICE_NAME }}/*.zip
-        name: ${{ github.event.inputs.DEVICE_NAME }}
+       path: twrp/${{ github.event.inputs.DEVICE_PATH }}
+
+    - name: Set Swap Space
+      uses: pierotofy/set-swap-space@master
+      with:
+        swap-size-gb: 12
+
+    - name: Check Build Branch - Step 1
+      if: ${{ github.event.inputs.MANIFEST_BRANCH == 'twrp-12.1' }}
+      run: |
+        PATH=~/bin:$PATH
+        cd ${{ steps.pwd.outputs.pwd }}
+        source build/envsetup.sh
+        repopick 5405 5540
+
+    - name: Building recovery
+      run: |
+        PATH=~/bin:$PATH
+        cd ${{ steps.pwd.outputs.pwd }}
+        source build/envsetup.sh
+        lunch ${{ github.event.inputs.MAKEFILE_NAME }}-eng
+        export ALLOW_MISSING_DEPENDENCIES=true
+        make clean
+        make ${{ github.event.inputs.BUILD_TARGET }}image -j$(nproc --all)        
+      
+    - name: Upload to Release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: workspace/out/target/product/${{ github.event.inputs.DEVICE_NAME }}/${{ github.event.inputs.BUILD_TARGET }}.img
+        name: ${{ github.event.inputs.DEVICE_NAME }}-${{ github.run_id }}
+        tag_name: ${{ github.run_id }}
+        body: |
+          Manifest: ${{ github.event.inputs.MANIFEST_BRANCH }}
+          Device: ${{ github.event.inputs.DEVICE_NAME }}
+          Target: ${{ github.event.inputs.BUILD_TARGET }}.img
+      env:
+        GITHUB_TOKEN: ${{ secrets.TEST }}
