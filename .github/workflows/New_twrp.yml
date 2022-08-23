@@ -57,10 +57,10 @@ jobs:
           repo sync -c -j8 --force-sync --no-clone-bundle --no-tags
           rm -rf .repo
 
-       - name: Check Build Branch
-         run: |
-           source build/envsetup.sh
-           repopick 5405 5540
+#       - name: Check Build Branch
+#         run: |
+#           source build/envsetup.sh
+#           repopick 5405 5540
         
        - name: Checkout device tree
          uses: actions/checkout@v2
