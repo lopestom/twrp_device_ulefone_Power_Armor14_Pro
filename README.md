@@ -30,8 +30,9 @@ Status: testing
 
 ## What's the history?
 boot-UPA14_Pro_20220720_V01-A12-nnnnnnn.img => Working?? Not Working???
-- 21/05/2022 TWRP boot-UPA14_Pro_20220720_V01-A12-nnnnnnn.img --> booted;
-
+- 22/08/2022 TWRP boot-UPA14_Pro_20220720_V01-A12-nnnnnnn.img --> booted;
+The TWRP compiled with A11 SC bootloping. The TWRP compiled with A12 need 38MB minimum file size and boot_ partition has only 32MB. So that's the problem now.
+Unpacked boot_TWRP.img and removed some files => 31.8MB sucesslly; TWRP boot and work and the problem is: device not start/boot normally => bootloop to TWRP.
 ## Credits
 
 - [lopestorm](https://github.com/lopestom) - For testing of TWRP.<br/>
