@@ -13,7 +13,7 @@ on:
   workflow_dispatch:
 
 env:
-  MANIFEST: https://github.com/minimal-manifest-twrp/platform_manifest_twrp_aosp -b twrp-11
+  MANIFEST: https://github.com/minimal-manifest-twrp/platform_manifest_twrp_aosp -b twrp-12.1
   DEVICE: Power_Armor14_Pro
   DT_LINK: https://github.com/lopestom/twrp_device_ulefone_Power_Armor14_Pro
   DT_PATH: device/ulefone/Power_Armor14_Pro
