@@ -80,7 +80,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.TEST }}
          with:
           tag_name: Ulefone_Power_Armor14_Pro
-          name: TWRP36x_12
+          name: TWRP37x_12
           files: | 
             twrp/out/target/product/Power_Armor14_Pro/boot*.img
             twrp/out/target/product/Power_Armor14_Pro/ramdisk*.img
