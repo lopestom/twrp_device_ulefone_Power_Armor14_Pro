@@ -1,4 +1,5 @@
 #
+# Copyright (C) 2022 The Android Open Source Project
 # Copyright (C) 2022 The TWRP Open Source Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -17,16 +18,16 @@
 LOCAL_PATH := device/ulefone/Power_Armor14_Pro
 
 # Inherit from those products. Most specific first.
-$(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
+#$(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
 
 # Dynamic Partitions
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
 
 # VNDK
-PRODUCT_TARGET_VNDK_VERSION := 30
+PRODUCT_TARGET_VNDK_VERSION := 31
 
 # API
-PRODUCT_SHIPPING_API_LEVEL := 30
+PRODUCT_SHIPPING_API_LEVEL := 31
 
 PRODUCT_PLATFORM := mt6768
 
@@ -58,6 +59,8 @@ ENABLE_VIRTUAL_AB := true
 
 # Boot control HAL
 PRODUCT_PACKAGES += \
+    android.hardware.boot@1.2-mtkimpl.recovery \
+    android.hardware.boot@1.2-mtkimpl \
     android.hardware.boot@1.2-impl-recovery \
     android.hardware.boot@1.2-impl \
     android.hardware.boot@1.2-service
@@ -67,9 +70,17 @@ PRODUCT_PACKAGES_DEBUG += \
 
 PRODUCT_PACKAGES += \
     otapreopt_script \
+    cppreopts.sh \
     update_engine \
     update_verifier \
     update_engine_sideload
+
+# MTK PlPath Utils
+PRODUCT_PACKAGES += \
+    mtk_plpath_utils.recovery
+
+PRODUCT_PACKAGES_DEBUG += \
+    bootctrl
 
 # fastbootd stuff
 PRODUCT_PACKAGES += \
@@ -82,35 +93,7 @@ PRODUCT_PACKAGES += \
     android.hardware.health@2.1-impl \
     android.hardware.health@2.1-service \
 
-# Keystore
-PRODUCT_PACKAGES += \
-    android.system.keystore2
-
-# Keymint
-PRODUCT_PACKAGES += \
-    android.hardware.security.keymint \
-    android.hardware.security.secureclock \
-    android.hardware.security.sharedsecret
-
-# Drm
-PRODUCT_PACKAGES += \
-    android.hardware.drm@1.4
-
-# Keymaster
-PRODUCT_PACKAGES += \
-    android.hardware.keymaster@4.1
-
-# Additional target Libraries
-TARGET_RECOVERY_DEVICE_MODULES += \
-    android.hardware.keymaster@4.1
-    
-TW_RECOVERY_ADDITIONAL_RELINK_LIBRARY_FILES += \
-    $(TARGET_OUT_SHARED_LIBRARIES)/android.hardware.keymaster@4.1.so
 
 TW_OVERRIDE_SYSTEM_PROPS := \
     "ro.build.product;ro.build.fingerprint;ro.build.version.incremental;ro.product.device=ro.product.system.device;ro.product.model=ro.product.system.model;ro.product.name=ro.product.system.name"
 
-# Apex libraries
-PRODUCT_HOST_PACKAGES += \
-    libandroidicu
-#    libicuuc
