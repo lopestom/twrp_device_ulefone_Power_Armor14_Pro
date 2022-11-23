@@ -33,8 +33,18 @@ This branch A12 not have encrypt/decrypt process and files. So the process to ba
 boot-UPA14_Pro_nnnnnnn.img => Working?? Not Working???
 - 21/05/2022 TWRP boot-UPA14_Pro_nnnnnnn.img --> booted;
 
-## Credits
+- Updated to 3.7.0_12 version;
 
+- 23/11/2022 - The applied theme is very good for devices with a centralized notch and the clock moves a little to the left side. Maybe trying the TW_CUSTOM_CLOCK_POS := 300 is better.
+
+```# Statusbar icons flags 1080 x 2260
+TW_STATUS_ICONS_ALIGN := center
+#TW_CUSTOM_CPU_POS := 50
+TW_CUSTOM_CLOCK_POS := 270
+#TW_CUSTOM_BATTERY_POS := 800
+```
+
+## Credits
 - [lopestorm](https://github.com/lopestom) - For testing of TWRP.<br/>
 
 ## Big thanks to:
