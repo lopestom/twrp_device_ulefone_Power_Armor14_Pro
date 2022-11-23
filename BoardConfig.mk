@@ -231,8 +231,27 @@ TW_INCLUDE_REPACKTOOLS := true
 TW_THEME := portrait_hdpi
 TARGET_SCREEN_WIDTH := 720
 TARGET_SCREEN_HEIGHT := 1600
-TW_Y_OFFSET := 50
-TW_H_OFFSET := -50
+#TW_Y_OFFSET := 50
+#TW_H_OFFSET := -50
+
+# Statusbar icons flags 1080 x 2260
+TW_STATUS_ICONS_ALIGN := center
+#TW_CUSTOM_CPU_POS := 50
+TW_CUSTOM_CLOCK_POS := 270
+#TW_CUSTOM_BATTERY_POS := 800
+
+##ifneq ($(OF_HIDE_NOTCH),1) 1080 x 2400
+#    # Configure Status bar icons for regular TWRP builds only
+#    TW_CUSTOM_CLOCK_POS := 40
+#    TW_CUSTOM_CPU_POS := 605
+#    TW_STATUS_ICONS_ALIGN := center
+#endif
+
+# Statusbar icons flags 1080 x 2400
+#TW_CUSTOM_BATTERY_POS := 800
+#TW_CUSTOM_CLOCK_POS := 65
+#TW_CUSTOM_CPU_POS := 270
+#TW_STATUS_ICONS_ALIGN := center
 
 # Debug
 TWRP_INCLUDE_LOGCAT := true
