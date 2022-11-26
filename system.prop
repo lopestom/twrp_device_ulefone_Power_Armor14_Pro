@@ -13,12 +13,12 @@ ro.sf.lcd_density=320
 ro.vendor.mediatek.platform=MT6768
 ro.hardware=mt6768
 ro.crypto.volume.filenames_mode=aes-256-cts
-##
 ro.hardware.kmsetkey=beanpod
 ro.hardware.gatekeeper=beanpod
 ro.vendor.mtk_microtrust_tee_support=1
 ro.vendor.mtk_f2fs_enable=1
 ro.vendor.mtk_emmc_support=1
+persist.vendor.mtk.pl_lnk=1
 #
 ro.secure=0
 ro.adb.secure=0
