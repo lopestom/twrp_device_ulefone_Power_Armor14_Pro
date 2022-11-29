@@ -17,8 +17,14 @@
 
 LOCAL_PATH := device/ulefone/Power_Armor14_Pro
 
-# Inherit from those products. Most specific first.
-#$(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
+# Enable Scoped Storage related. Inherit from those products. Most specific first.
+$(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
+
+# This is for more tests after.
+# avoid usb crash
+#PRODUCT_PRODUCT_PROPERTIES += \
+#	persist.adb.nonblocking_ffs=0 \
+#	ro.adb.nonblocking_ffs=0 \
 
 # Dynamic Partitions
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
