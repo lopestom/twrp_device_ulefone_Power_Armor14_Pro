@@ -35,7 +35,7 @@ boot-UPA14_Pro_nnnnnnn.img => Working?? Not Working???
 
 - Updated to 3.7.0_12 version;
 
-- 23/11/2022 - The applied theme is very good for devices with a centralized notch and the clock moves a little to the left side. Maybe trying the TW_CUSTOM_CLOCK_POS := 300 is better.
+- 23/11/2022 - The applied theme is very good for devices with a centralized notch and the clock moves a little to the left side. Maybe trying the TW_CUSTOM_CLOCK_POS := 300 is better;
 
 ```# Statusbar icons flags 1080 x 2260
 TW_STATUS_ICONS_ALIGN := center
@@ -43,6 +43,7 @@ TW_STATUS_ICONS_ALIGN := center
 TW_CUSTOM_CLOCK_POS := 270
 #TW_CUSTOM_BATTERY_POS := 800
 ```
+- Already made img file with two languages - en & ru.
 
 ## Credits
 - [lopestorm](https://github.com/lopestom) - For testing of TWRP.<br/>
@@ -59,8 +60,10 @@ TW_CUSTOM_CLOCK_POS := 270
 # TWRP Pictures
 ## ©2022
 -------------
-![Initial Menu](https://gRU-20220521_103640.jpg?raw=true)
-![Backup Partitions](https://github.4739.jpg?raw=true)
+![Initial Menu](https://github.com/lopestom/twrp_device_ulefone_Power_Armor14_Pro/blob/A12_NoCrypt_Orig/pictures/IMG_20221126_215614_737a.jpg?raw=true)
+![Backup Partitions](https://github.com/lopestom/twrp_device_ulefone_Power_Armor14_Pro/blob/A12_NoCrypt_Orig/pictures/Screenshot_2022-01-01-07-41-33.png?raw=true)
+![Backup Data](https://github.com/lopestom/twrp_device_ulefone_Power_Armor14_Pro/blob/A12_NoCrypt_Orig/pictures/Screenshot_2022-01-01-07-45-09.png?raw=true)
+![Restore Data](https://github.com/lopestom/twrp_device_ulefone_Power_Armor14_Pro/blob/A12_NoCrypt_Orig/pictures/Screenshot_2022-01-01-07-45-15.png?raw=true)
 
 ## To build with minimal twrp AOSP
 ```
