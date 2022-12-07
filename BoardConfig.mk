@@ -208,6 +208,7 @@ TW_USE_MODEL_HARDWARE_ID_FOR_DEVICE_ID := true
 
 TW_EXCLUDE_APEX := true
 BOARD_USE_FRAMEBUFFER_ALPHA_CHANNEL := true
+# This is related to OpenGL Performance. Do we need this?
 TARGET_DISABLE_TRIPLE_BUFFERING := false
 
 # Charger Mode
