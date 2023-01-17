@@ -64,12 +64,16 @@ ENABLE_VIRTUAL_AB := true
 
 # Boot control HAL
 PRODUCT_PACKAGES += \
+    android.hardware.boot@1.0-impl-1.2-mtkimpl.so \
     android.hardware.boot@1.2-impl-recovery \
+    android.hardware.boot@1.2-mtkimpl.recovery \
+    android.hardware.boot@1.2-mtkimpl \
     android.hardware.boot@1.2-impl \
     android.hardware.boot@1.2-service
 
 PRODUCT_PACKAGES_DEBUG += \
-    update_engine_client
+    update_engine_client \
+    bootctrl
 
 PRODUCT_PACKAGES += \
     otapreopt_script \
@@ -77,16 +81,24 @@ PRODUCT_PACKAGES += \
     update_verifier \
     update_engine_sideload
 
+# MTK PlPath Utils
+PRODUCT_PACKAGES += \
+	mtk_plpath_utils \
+	mtk_plpath_utils.recovery
+
 # fastbootd stuff
 PRODUCT_PACKAGES += \
     android.hardware.fastboot@1.0-impl-mock \
     android.hardware.fastboot@1.0-impl-mock.recovery \
+    android.hardware.fastboot@1.1-impl-mock \
+    android.hardware.fastboot@1.1-impl-mock.recovery \
     fastbootd
 
 # health Hal
 PRODUCT_PACKAGES += \
     android.hardware.health@2.1-impl \
     android.hardware.health@2.1-service \
+    libhealthd.$(PRODUCT_PLATFORM)
 
 # Keystore
 PRODUCT_PACKAGES += \
