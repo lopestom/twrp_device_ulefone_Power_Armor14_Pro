@@ -4,7 +4,8 @@ import /system/etc/init/mtk-plpath-utils.rc
 on init
     # Create a more standard /dev/block layout for our scripts
     symlink /dev/block/platform/bootdevice /dev/block/bootdevice
-    export LD_LIBRARY_PATH /system/lib64:/vendor/lib64:/vendor/lib64/hw
+    # export LD_LIBRARY_PATH /system/lib64:/vendor/lib64:/vendor/lib64/hw
+    export LD_LIBRARY_PATH /vendor/lib64:/vendor/lib64/hw:/system/lib64:/system/lib64/hw
     export LD_LIBRARY_PATH /system/bin:/vendor/bin
 
     mkdir /mnt/vendor/persist 0700 root root
