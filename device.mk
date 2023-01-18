@@ -96,7 +96,9 @@ PRODUCT_PACKAGES += \
 
 # health Hal
 PRODUCT_PACKAGES += \
+    android.hardware.health@2.0 \
     android.hardware.health@2.1-impl \
+    android.hardware.health@2.1-impl.recovery \
     android.hardware.health@2.1-service \
     libhealthd.$(PRODUCT_PLATFORM)
 
@@ -109,6 +111,12 @@ PRODUCT_PACKAGES += \
     android.hardware.security.keymint \
     android.hardware.security.secureclock \
     android.hardware.security.sharedsecret
+
+# Gatekeeper
+PRODUCT_PACKAGES += \
+    android.hardware.gatekeeper@1.0-service \
+    android.hardware.gatekeeper@1.0.vendor \
+    android.hardware.gatekeeper@1.0-impl
 
 # Drm
 PRODUCT_PACKAGES += \
