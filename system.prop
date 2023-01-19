@@ -6,7 +6,8 @@ persist.sys.usb.config=mtp,adb
 persist.service.adb.enable=1
 persist.service.debuggable=1
 persist.sys.isUsbOtgEnabled=true
-ro.sys.usb.mtp.whql.enable=0ro.sys.usb.storage.type=mtp
+ro.sys.usb.mtp.whql.enable=0
+ro.sys.usb.storage.type=mtp
 ro.treble.enabled=true
 sys.usb.controller=musb-hdrc
 sys.usb.ffs.aio_compat=true
