@@ -9,7 +9,8 @@ on init
     export LD_LIBRARY_PATH /system/bin:/vendor/bin
 
     mkdir /mnt/vendor/persist 0700 root root
-    mount ext4 /dev/block/platform/bootdevice/by-name/persist /mnt/vendor/persist
+    mount ext4 /dev/block/platform/bootdevice/by-name/persist /mnt/vendor/persist rw
+    symlink /mnt/vendor/persist /persist
 
 on fs
     mkdir /mnt/vendor 0700 root root
