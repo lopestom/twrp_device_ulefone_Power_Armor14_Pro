@@ -1,6 +1,6 @@
 ####### generate by lopestom #######
-ro.product.first_api_level=31
-ro.board.first_api_level=30
+#ro.product.first_api_level=31
+#ro.board.first_api_level=30
 external_storage.projid.enabled=1
 external_storage.casefold.enabled=1
 external_storage.sdcardfs.enabled=0
