@@ -1,11 +1,11 @@
 import /init.recovery.microtrust.rc
-import /system/etc/init/mtk-plpath-utils.rc
+#import /system/etc/init/mtk-plpath-utils.rc
 
 on init
     # Create a more standard /dev/block layout for our scripts
     symlink /dev/block/platform/bootdevice /dev/block/bootdevice
-    # export LD_LIBRARY_PATH /system/lib64:/vendor/lib64:/vendor/lib64/hw
-    export LD_LIBRARY_PATH /vendor/lib64:/vendor/lib64/hw:/system/lib64:/system/lib64/hw
+    export LD_LIBRARY_PATH /system/lib64:/vendor/lib64:/vendor/lib64/hw
+    #export LD_LIBRARY_PATH /vendor/lib64:/vendor/lib64/hw:/system/lib64:/system/lib64/hw
     export LD_LIBRARY_PATH /system/bin:/vendor/bin
 
     mkdir /mnt/vendor/persist 0700 root root
@@ -29,10 +29,6 @@ on fs
 
     install_keyring
     setprop crypto.ready 1
-
-on boot
-     start boot-hal-1-2
-     start health-hal-2-1
 
 service keystore_auth /system/bin/keystore_auth
     oneshot
@@ -80,16 +76,7 @@ on property:twrp.decrypt.done=true
 
 on init
     setprop sys.usb.configfs 1
-#orign    setprop sys.usb.ffs.aio_compat 0
-    setprop sys.usb.ffs.aio_compat 1
-    # pstore/ramoops previous console log
-    mount pstore pstore /sys/fs/pstore nodev noexec nosuid
-    chown system log /sys/fs/pstore/console-ramoops
-    chmod 0440 /sys/fs/pstore/console-ramoops
-    chown system log /sys/fs/pstore/console-ramoops-0
-    chmod 0440 /sys/fs/pstore/console-ramoops-0
-    chown system log /sys/fs/pstore/pmsg-ramoops-0
-    chmod 0440 /sys/fs/pstore/pmsg-ramoops-0
+    setprop sys.usb.ffs.aio_compat 0
 
 on fs && property:ro.debuggable=0
     # distinguish USB shoulde connect or not, i.e. CDP vs SDP
@@ -107,3 +94,16 @@ on post-fs
     symlink /dev/block/mmcblk0boot1 /dev/block/by-name/preloader_b
 
     exec u:r:update_engine:s0 root root -- /system/bin/mtk_plpath_utils
+    start mtk.plpath.utils.link
+
+service mtk.plpath.utils.link /system/bin/mtk_plpath_utils
+    class main
+    user root
+    group root system
+    oneshot
+    disabled
+    seclabel u:r:recovery:s0
+
+on boot
+     start boot-hal-1-2
+     start health-hal-2-1
