@@ -81,10 +81,10 @@ jobs:
              
     - name: Build
       run: |
-           PATH=~/bin:$PATH
-           cd twrp
-           export ALLOW_MISSING_DEPENDENCIES=true && source build/envsetup.sh &&lunch twrp_Power_Armor14_Pro-eng && mka $TARGET -j$(nproc --all)
-           cp  out/target/product/Power_Armor14_Pro/boot.img    out/target/product/Power_Armor14_Pro/boot-UPA14Pro-A12-$(date +"%Y%m%d-%H%M").img  
+       PATH=~/bin:$PATH
+       cd twrp
+       export ALLOW_MISSING_DEPENDENCIES=true && source build/envsetup.sh &&lunch twrp_Power_Armor14_Pro-eng && mka $TARGET -j$(nproc --all)
+       cp  out/target/product/Power_Armor14_Pro/boot.img    out/target/product/Power_Armor14_Pro/boot-UPA14Pro-A12-$(date +"%Y%m%d-%H%M").img  
              
     - name: Release recovery image
       uses: softprops/action-gh-release@v1
@@ -92,6 +92,6 @@ jobs:
        GITHUB_TOKEN: ${{ secrets.TEST }}
       with:
        tag_name: UPA14Pro-Crypt
-      name: TWRP37x_12-Crypt
-      files: | 
-        twrp/out/target/product/Power_Armor14_Pro/boot*.img
+       name: TWRP37x_12-Crypt
+       files: | 
+         twrp/out/target/product/Power_Armor14_Pro/boot*.img
