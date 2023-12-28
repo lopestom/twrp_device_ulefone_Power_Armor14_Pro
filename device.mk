@@ -28,13 +28,16 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Dynamic Partitions
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
 
-# VNDK
-PRODUCT_TARGET_VNDK_VERSION := 30
-
 # API
 PRODUCT_SHIPPING_API_LEVEL := 30
 
 PRODUCT_PLATFORM := mt6768
+
+# VNDK
+PRODUCT_TARGET_VNDK_VERSION := 30
+
+# Treble
+BOARD_VNDK_VERSION := current
 
 # A/B
 AB_OTA_UPDATER := true
@@ -64,16 +67,17 @@ ENABLE_VIRTUAL_AB := true
 
 # Boot control HAL
 PRODUCT_PACKAGES += \
-    android.hardware.boot@1.0-impl-1.2-mtkimpl.so \
-    android.hardware.boot@1.2-impl-recovery \
-    android.hardware.boot@1.2-mtkimpl.recovery \
+    android.hardware.boot@1.2-service \
     android.hardware.boot@1.2-mtkimpl \
-    android.hardware.boot@1.2-impl \
-    android.hardware.boot@1.2-service
+    android.hardware.boot@1.2-mtkimpl.recovery
 
 PRODUCT_PACKAGES_DEBUG += \
     update_engine_client \
     bootctrl
+
+PRODUCT_PACKAGES += \
+    bootctrl.$(TARGET_BOARD_PLATFORM) \
+    bootctrl.$(TARGET_BOARD_PLATFORM).recovery
 
 PRODUCT_PACKAGES += \
     otapreopt_script \
@@ -86,21 +90,17 @@ PRODUCT_PACKAGES += \
 	mtk_plpath_utils \
 	mtk_plpath_utils.recovery
 
-# fastbootd stuff
+# Fastbootd stuff
 PRODUCT_PACKAGES += \
     android.hardware.fastboot@1.0-impl-mock \
     android.hardware.fastboot@1.0-impl-mock.recovery \
-    android.hardware.fastboot@1.1-impl-mock \
-    android.hardware.fastboot@1.1-impl-mock.recovery \
     fastbootd
 
 # health Hal
 PRODUCT_PACKAGES += \
-    android.hardware.health@2.0 \
     android.hardware.health@2.1-impl \
-    android.hardware.health@2.1-impl.recovery \
     android.hardware.health@2.1-service \
-    libhealthd.$(PRODUCT_PLATFORM)
+    libhealthd.$(TARGET_BOARD_PLATFORM)
 
 # Keystore
 PRODUCT_PACKAGES += \
