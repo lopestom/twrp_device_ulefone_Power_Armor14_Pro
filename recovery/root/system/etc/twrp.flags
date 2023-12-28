@@ -16,8 +16,8 @@
 /vendor_boot	emmc	/dev/block/platform/bootdevice/by-name/vendor_boot		 flags=display="Vendor Boot";backup=1;flashimg=1;slotselect
 /boot            emmc    /dev/block/platform/bootdevice/by-name/boot               flags=backup=1;display="Boot";flashimg=1;slotselect
 /dtbo            emmc    /dev/block/platform/bootdevice/by-name/dtbo               flags=backup=1;display="Dtbo";flashimg=1;slotselect
-/persist         ext4    /dev/block/platform/bootdevice/by-name/persist            flags=backup=1;display="Persist";mounttodecrypt
-/persist_image   emmc    /dev/block/platform/bootdevice/by-name/persist            flags=backup=1;display="Persist Image";flashimg=1;mounttodecrypt
+/persist         ext4    /dev/block/platform/bootdevice/by-name/persist            flags=backup=1;display="Persist";mounttodecrypt;fsflags=ro 
+/persist_image   emmc    /dev/block/platform/bootdevice/by-name/persist            flags=backup=1;display="Persist Image";flashimg=1
 #/mnt/vendor/persist  ext4  /dev/block/platform/bootdevice/by-name/persist 
 /vbmeta		    emmc	/dev/block/platform/bootdevice/by-name/vbmeta           flags=display="vbmeta";backup=1;flashimg=1;slotselect
 /vbmeta_system   emmc    /dev/block/platform/bootdevice/by-name/vbmeta_system      flags=backup=1;display="vbmeta_system";flashimg=1;slotselect
