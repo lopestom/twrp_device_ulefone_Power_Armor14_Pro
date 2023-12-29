@@ -33,7 +33,7 @@ jobs:
 
     # You might want to Checkout your repo first, but not mandatory
     - name: Check Out
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
     # Cleanup The Actions Workspace Using Custom Composite Run Actions
     - name: Cleanup
       uses: rokibhasansagar/slimhub_actions@main
@@ -70,7 +70,7 @@ jobs:
        rm -rf .repo
              
     - name: Checkout device tree
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
       with:
        path: twrp/device/ulefone/Power_Armor14_Pro
 
