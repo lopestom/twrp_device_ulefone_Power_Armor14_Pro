@@ -55,11 +55,14 @@ Unpacked boot_TWRP.img and removed some files => 31.8MB sucesslly; TWRP boot and
 <p>
 
 ![Initial Menu](https://github.com/lopestom/twrp_device_ulefone_Power_Armor14_Pro/releases/download/Encrypt_Decrypt/Screenshot_2023-12-29-14-24-17_resized.png)
+![Decrypt 1](https://github.com/lopestom/twrp_device_ulefone_Power_Armor14_Pro/releases/download/Encrypt_Decrypt/Screenshot_2023-12-29-23-46-30_resized.png)
+![Decrypt 2](https://github.com/lopestom/twrp_device_ulefone_Power_Armor14_Pro/releases/download/Encrypt_Decrypt/Screenshot_2023-12-30-17-21-20_resized.png)
+![Decrypt 3](https://github.com/lopestom/twrp_device_ulefone_Power_Armor14_Pro/releases/download/Encrypt_Decrypt/Screenshot_2023-12-29-23-46-36_resized.png)
 ![Enc_Dec](https://github.com/lopestom/twrp_device_ulefone_Power_Armor14_Pro/releases/download/Encrypt_Decrypt/Screenshot_2023-12-29-20-46-52_resized.png)
 ![Backup Partitions](https://github.com/lopestom/twrp_device_ulefone_Power_Armor14_Pro/releases/download/Encrypt_Decrypt/Screenshot_2023-12-29-14-23-12_resized.png)
-![Menu](https://github.com/lopestom/twrp_device_ulefone_Power_Armor14_Pro/releases/download/Encrypt_Decrypt/Screenshot_2023-12-29-14-24-40_resized.png)
 ![Initial](https://github.com/lopestom/twrp_device_ulefone_Power_Armor14_Pro/releases/download/Encrypt_Decrypt/Screenshot_2023-12-29-14-24-59_resized.png)
 ![Backup](https://github.com/lopestom/twrp_device_ulefone_Power_Armor14_Pro/releases/download/Encrypt_Decrypt/Screenshot_2023-12-29-14-26-13_resized.png)
+![Menu](https://github.com/lopestom/twrp_device_ulefone_Power_Armor14_Pro/releases/download/Encrypt_Decrypt/Screenshot_2023-12-29-14-24-40_resized.png)
 ![Restore](https://github.com/lopestom/twrp_device_ulefone_Power_Armor14_Pro/releases/download/Encrypt_Decrypt/Screenshot_2023-12-29-14-26-21_resized.png)
 </p>
 </details>
