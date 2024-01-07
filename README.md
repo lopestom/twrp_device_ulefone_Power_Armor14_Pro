@@ -1,8 +1,8 @@
-[![GitHub Release](https://img.shields.io/github/release/lopestom/twrp_device_ulefone_Armor_17_Pro.svg?logo=github)](https://github.com/lopestom/twrp_device_ulefone_Armor_17_Pro/releases) [![GPLv3+](https://img.shields.io/badge/license-GPLv3+-red.svg)](https://www.gnu.org/licenses/gpl-3.0.html) [![download](https://img.shields.io/github/downloads/lopestom/twrp_device_ulefone_Armor_17_Pro/total)](https://github.com/lopestom/twrp_device_ulefone_Armor_17_Pro/releases/download/Ulefone_Armor_17_Pro-V3.03/vendor_boot-Armor_17_Pro-20231206.img)
+[![GitHub Release](https://img.shields.io/github/release/lopestom/twrp_device_ulefone_Power_Armor14_Pro.svg?logo=github)](https://github.com/lopestom/twrp_device_ulefone_Power_Armor14_Pro/releases) [![GPLv3+](https://img.shields.io/badge/license-GPLv3+-red.svg)](https://www.gnu.org/licenses/gpl-3.0.html) [![download](https://img.shields.io/github/downloads/lopestom/twrp_device_ulefone_Power_Armor14_Pro/total)](https://github.com/lopestom/twrp_device_ulefone_Power_Armor14_Pro/releases/download/Encrypt_Decrypt/boot-UPA14Pro-A12-20231229-WORK_ENC-Awesome.img)
 --------------------------------------------------------
 # Device Tree for Ulefone Power Armor 14 Pro - mt6768
 
-**Repository Views** ![Views](https://profile-counter.glitch.me/twrp_device_ulefone_Armor_17_Pro/count.svg)
+**Repository Views** ![Views](https://profile-counter.glitch.me/twrp_device_ulefone_Power_Armor14_Pro/count.svg)
 --------------------------------------------------------
 - Firmware version: GQ3097TH1_KSE3H_Ulefone_20220720_V01
 
