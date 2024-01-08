@@ -10,9 +10,9 @@
 
 # Core Partitions
 /metadata             ext4    /dev/block/platform/bootdevice/by-name/md_udc         flags=backup=1;display="metadata"
+/data            f2fs    /dev/block/platform/bootdevice/by-name/userdata            flags=fileencryption=aes-256-xts:aes-256-cts:v2,keydirectory=/metadata/vold/metadata_encryption
 
 # Common partition
-/data            ext4    /dev/block/platform/bootdevice/by-name/userdata            flags=fileencryption=aes-256-xts:aes-256-cts:v2,keydirectory=/metadata/vold/metadata_encryption
 /vendor_boot	emmc	/dev/block/platform/bootdevice/by-name/vendor_boot		 flags=display="Vendor Boot";backup=1;flashimg=1;slotselect
 /boot            emmc    /dev/block/platform/bootdevice/by-name/boot               flags=backup=1;display="Boot";flashimg=1;slotselect
 /dtbo            emmc    /dev/block/platform/bootdevice/by-name/dtbo               flags=backup=1;display="Dtbo";flashimg=1;slotselect
