@@ -1,4 +1,4 @@
-[![GitHub Release](https://img.shields.io/github/release/lopestom/twrp_device_ulefone_Power_Armor14_Pro.svg?logo=github)](https://github.com/lopestom/twrp_device_ulefone_Power_Armor14_Pro/releases) [![GPLv3+](https://img.shields.io/badge/license-GPLv3+-red.svg)](https://www.gnu.org/licenses/gpl-3.0.html) [![download](https://img.shields.io/github/downloads/lopestom/twrp_device_ulefone_Power_Armor14_Pro/total)](https://github.com/lopestom/twrp_device_ulefone_Power_Armor14_Pro/releases/download/Encrypt_Decrypt/boot-UPA14Pro-A12-20231229-WORK_ENC-Awesome.img)
+[![GitHub Release](https://img.shields.io/github/release/lopestom/twrp_device_ulefone_Power_Armor14_Pro.svg?logo=github)](https://github.com/lopestom/twrp_device_ulefone_Power_Armor14_Pro/releases) [![GPLv3+](https://img.shields.io/badge/license-GPLv3+-red.svg)](https://www.gnu.org/licenses/gpl-3.0.html) [![download](https://img.shields.io/github/downloads/lopestom/twrp_device_ulefone_Power_Armor14_Pro/total)](https://github.com/lopestom/twrp_device_ulefone_Power_Armor14_Pro/releases/download/EOL/boot_TWRP-UPA14Pro-20250505_Work_FULL.zip)
 --------------------------------------------------------
 # Device Tree for Ulefone Power Armor 14 Pro - mt6768
 
@@ -9,7 +9,7 @@
 ## Status
 This branch android-12.1 has ***encrypt/decrypt*** files and option to more test with that.
 
-You need read the [realease](https://github.com/lopestom/twrp_device_ulefone_Power_Armor14_Pro/releases/tag/Encrypt_Decrypt) tab to know about these DT.
+You need read the realease [EOL](https://github.com/lopestom/twrp_device_ulefone_Power_Armor14_Pro/releases/tag/EOL) tab to know about these DT.
 
 [![Donate](https://img.shields.io/badge/Donate-PayPal-blue.svg)](https://www.paypal.com/donate?token=Cxr1xP4Yr_XgV2E5lpC6Oo4qvbqmPiS3TgR6aiMEnQUgxr_nP242Z6zMqzeluThwaikNL-FXe8RnA1pT) to TeamWin so any donation is highly appreciated!
 
